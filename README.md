@@ -6,7 +6,7 @@ A lightweight, terminal-based line editor implemented in C for **Activity 7: Bui
 
 ## Team Information
 - **Team Members:**
-  - Sharanabasappagouda (USN: R25EJ137)
+  - Sharanabasappagouda
   - VijayKumar
   - Vinayak P
 
