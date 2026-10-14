@@ -117,7 +117,6 @@ void find_word(const Document *doc, const char *word) {
     }
 }
 
-/* builds a new string with every occurrence of old_word replaced by new_word */
 void replace_in_string(const char *line, const char *old_word, const char *new_word, char *result) {
     int result_pos = 0;
     int old_len = strlen(old_word);
@@ -200,7 +199,7 @@ void load_document(Document *doc, const char *filename) {
 
     char buffer[MAX_LINE_LEN];
     while (fgets(buffer, sizeof(buffer), fp) != NULL && doc->count < MAX_LINES) {
-        buffer[strcspn(buffer, "\n")] = '\0'; /* strip trailing newline */
+        buffer[strcspn(buffer, "\n")] = '\0';
         doc->lines[doc->count] = malloc(strlen(buffer) + 1);
         strcpy(doc->lines[doc->count], buffer);
         doc->count++;
@@ -246,7 +245,7 @@ int main(void) {
     while (1) {
         printf("> ");
         if (fgets(input, sizeof(input), stdin) == NULL) break;
-        input[strcspn(input, "\n")] = '\0'; /* strip newline */
+        input[strcspn(input, "\n")] = '\0';
 
         if (strlen(input) == 0) continue;
 
@@ -261,9 +260,8 @@ int main(void) {
         } else if (command == 'i') {
             int n;
             char text[MAX_LINE_LEN];
-            /* input looks like: i 2 hello world */
             if (sscanf(input, "i %d %[^\n]", &n, text) == 2) {
-                insert_line_ex(&doc, n - 1, text, &last, 1); /* user types 1-based line numbers */
+                insert_line_ex(&doc, n - 1, text, &last, 1);
             } else {
                 printf("Usage: i <line_number> <text>\n");
             }
